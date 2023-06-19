@@ -1,7 +1,7 @@
 """saulgadgets URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
+    https://docs.djangoproject.com/en/3.1/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -22,7 +22,7 @@ from apps.cart.views import cart_detail
 from apps.core.views import frontpage, contact, about
 from apps.store.views import product_detail, category_detail
 
-from apps.store.api import api_add_to_cart, api_remove_from_cart
+from apps.store.api import api_add_to_cart, api_remove_from_cart, api_checkout
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
@@ -35,6 +35,7 @@ urlpatterns = [
 
     path('api/add_to_cart/', api_add_to_cart, name='api_add_to_cart'),
     path('api/remove_from_cart/', api_remove_from_cart, name='api_remove_from_cart'),
+    path('api/checkout/', api_checkout, name='api_checkout'),
 
     # Store
 
