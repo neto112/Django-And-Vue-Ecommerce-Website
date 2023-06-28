@@ -30,7 +30,7 @@
                 {% endfor %}
 
                 <div class="navbar-item" id="navbarapp">
-                    <a href="{% url 'cart' %}" class="button is-primary">Cart ([[ numItems ]])</a>
+                    <a href="{% url 'cart' %}" class="button is-primary">Cart {{ numItems }}</a>
                 </div>
             </div>
         </div>
@@ -54,23 +54,25 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
     <script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
     <script>
         var store = new Vuex.Store({
             state: {
-                numItems: {{ cart.get_total_length }},
-        totalCost: { { cart.get_total_cost } }
-				},
-        mutations: {
-            increment(state, quantity) {
-                state.numItems += quantity;
+                numItems: cart.get_total_length,
+                totalCost: cart.get_total_cost
             },
-            changeTotalCost(state, newCost) {
-                state.totalCost += newCost
+            mutations: {
+                increment(state, quantity) {
+                    console.log(state, quantity);
+                    state.numItems += quantity;
+                },
+                changeTotalCost(state, newCost) {
+                    state.totalCost += newCost
+                }
             }
-        }
-			});
+        });
 
         var navbarapp = new Vue({
             el: '#navbarapp',
